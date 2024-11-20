@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CapaDal
 {
-    internal class ClsServicesBDDal
+    public class ClsServicesBDDal
     {        
 
         /// <summary>
@@ -54,7 +54,7 @@ namespace CapaDal
         }
 
 
-        public static ClsPersona BuscarPersona(int id)
+        public static ClsPersona BuscarPersonaDal(int id)
         {
             SqlDataReader miLector;
 
@@ -82,7 +82,6 @@ namespace CapaDal
                 {
                     while (miLector.Read())
                     {
-                        persona = new ClsPersona();
                         persona.Id = (int)miLector["ID"];
                         persona.Nombre = (String)miLector["Nombre"];
                         persona.Apellidos = (String)miLector["Apellidos"];
@@ -126,7 +125,7 @@ namespace CapaDal
         }
 
 
-        public static int addPersona(ClsPersona persona)
+        public static int AddPersonaDal(ClsPersona persona)
         {
             int filaAfectada=0;
             SqlCommand miComando = new SqlCommand();
@@ -164,7 +163,7 @@ namespace CapaDal
             return filaAfectada;
         }
 
-        public static int ActualizarPersona(ClsPersona persona)
+        public static int ActualizarPersonaDal(ClsPersona persona)
         {
             int filaAfectada = 0;
             SqlCommand miComando = new SqlCommand();

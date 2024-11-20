@@ -24,6 +24,10 @@ namespace CapaDal
             {
                 throw;
             }
+            finally
+            {
+                miConexion.Close();
+            }
 
             return miConexion;
         }
