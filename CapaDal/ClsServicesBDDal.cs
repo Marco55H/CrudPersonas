@@ -9,10 +9,7 @@ using System.Threading.Tasks;
 namespace CapaDal
 {
     internal class ClsServicesBDDal
-    {
-
-        private static SqlConnection miConexion = new SqlConnection();
-        
+    {        
 
         /// <summary>
         /// Funcion que usamos para borrar una persona de la vbase de datos azure
@@ -27,6 +24,8 @@ namespace CapaDal
             SqlCommand miComando = new SqlCommand();
 
             miComando.Parameters.Add("@id", System.Data.SqlDbType.Int).Value = id;
+
+            SqlConnection miConexion = new SqlConnection();
 
             try
             {
@@ -59,9 +58,11 @@ namespace CapaDal
         {
             SqlDataReader miLector;
 
-            ClsPersona persona;
+            ClsPersona persona = null;
 
             SqlCommand miComando = new SqlCommand();
+
+            SqlConnection miConexion = new SqlConnection();
 
             miComando.Parameters.Add("@id", System.Data.SqlDbType.Int).Value = id;
 
@@ -79,10 +80,38 @@ namespace CapaDal
 
                 if (miLector.HasRows)
                 {
-                    while (miLector)
+                    while (miLector.Read())
                     {
+                        persona = new ClsPersona();
+                        persona.Id = (int)miLector["ID"];
+                        persona.Nombre = (String)miLector["Nombre"];
+                        persona.Apellidos = (String)miLector["Apellidos"];
+
+                        if (miLector["Telefono"] != System.DBNull.Value)
+                        {
+                            persona.Telefono = (String)miLector["Telefono"];
+                        }
+                        if (miLector["Direccion"] != System.DBNull.Value)
+                        {
+                            persona.Direccion = (String)miLector["Direccion"];
+                        }
+                        if (miLector["Foto"] != System.DBNull.Value)
+                        {
+                            persona.Foto = (String)miLector["Foto"];
+                        }
+                        if (miLector["FechaNacimiento"] != System.DBNull.Value)
+                        {
+                            persona.FechaNacimiento = (DateTime)miLector["FechaNacimiento"];
+                        }
+                        if (miLector["IDDepartamento"] != System.DBNull.Value)
+                        {
+                            persona.IDDepartamento = (int)miLector["IDDepartamento"];
+                        }
+
                     }
                 }
+                miLector.Close();
+                miConexion.Close();
             }
             catch (Exception ex)
             {
@@ -100,19 +129,76 @@ namespace CapaDal
         public static int addPersona(ClsPersona persona)
         {
             int filaAfectada=0;
+            SqlCommand miComando = new SqlCommand();
+            SqlConnection miConexion = new SqlConnection();
 
+            miComando.Parameters.Add("@id", System.Data.SqlDbType.Int).Value = persona.Id;
+            miComando.Parameters.Add("@nombre", System.Data.SqlDbType.VarChar).Value = persona.Nombre;
+            miComando.Parameters.Add("@apellidos", System.Data.SqlDbType.VarChar).Value = persona.Apellidos;
+            miComando.Parameters.Add("@telefono", System.Data.SqlDbType.VarChar).Value = persona.Telefono;
+            miComando.Parameters.Add("@direccion", System.Data.SqlDbType.VarChar).Value = persona.Direccion;
+            miComando.Parameters.Add("@foto", System.Data.SqlDbType.VarChar).Value = persona.Foto;
+            miComando.Parameters.Add("@fechaNacimiento", System.Data.SqlDbType.DateTime).Value = persona.FechaNacimiento;
+            miComando.Parameters.Add("@idDepartamento", System.Data.SqlDbType.DateTime).Value = persona.IDDepartamento;
 
+            try
+            {
+                miConexion = ClsConexion.Conectar();
+                miConexion.Open();
+
+                miComando.CommandText = "Insert into Personas (ID, Nombre, Apellidos, Telefono, Direccion, Foto, FechaNAcimiento, IDDepartamento) Values " +
+                                                             "(@id, @nombre, @apellido, @telefono, @direccion, @fechanac, @idDepartamento)";
+            
+                miComando.Connection = miConexion;
+
+                filaAfectada = miComando.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            {
+            }
+            finally
+            {
+                miConexion.Close();
+            }
 
             return filaAfectada;
         }
 
         public static int ActualizarPersona(ClsPersona persona)
         {
-            int filasAfectadas = 0;
+            int filaAfectada = 0;
+            SqlCommand miComando = new SqlCommand();
+            SqlConnection miConexion = new SqlConnection();
 
+            miComando.Parameters.Add("@id", System.Data.SqlDbType.Int).Value = persona.Id;
+            miComando.Parameters.Add("@nombre", System.Data.SqlDbType.VarChar).Value = persona.Nombre;
+            miComando.Parameters.Add("@apellidos", System.Data.SqlDbType.VarChar).Value = persona.Apellidos;
+            miComando.Parameters.Add("@telefono", System.Data.SqlDbType.VarChar).Value = persona.Telefono;
+            miComando.Parameters.Add("@direccion", System.Data.SqlDbType.VarChar).Value = persona.Direccion;
+            miComando.Parameters.Add("@foto", System.Data.SqlDbType.VarChar).Value = persona.Foto;
+            miComando.Parameters.Add("@fechaNacimiento", System.Data.SqlDbType.DateTime).Value = persona.FechaNacimiento;
+            miComando.Parameters.Add("@idDepartamento", System.Data.SqlDbType.DateTime).Value = persona.IDDepartamento;
 
+            try
+            {
+                miConexion = ClsConexion.Conectar();
+                miConexion.Open();
 
-            return filasAfectadas;
+                miComando.CommandText = "Update Personas Set Nombre=@nombre, Apellidos=@apellidos, Telefono=@telefono, Direccion=@direccion, Foto = @foto, FechaNacimiento=@fechaNacimiento,IDDepartamento=@ideDepartamento, Where ID=@id";
+
+                miComando.Connection = miConexion;
+
+                filaAfectada = miComando.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            {
+            }
+            finally
+            {
+                miConexion.Close();
+            }
+
+            return filaAfectada;
         }
     }
 }
