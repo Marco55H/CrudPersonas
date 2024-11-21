@@ -26,7 +26,7 @@ namespace CapaBl
             return filasAfectadas;
         }
 
-        public static ClsPersona BuscarPersonaDal(int id)
+        public static ClsPersona BuscarPersonaBl(int id)
         {
             try
             {
@@ -40,7 +40,7 @@ namespace CapaBl
             return persona;
         }
 
-        public static int AddPersonaDal(ClsPersona personaAdd)
+        public static int AddPersonaBl(ClsPersona personaAdd)
         {
             try
             {
@@ -55,7 +55,7 @@ namespace CapaBl
             return filasAfectadas;
         }
 
-        public static int ActualizarPersonaDal(ClsPersona personaAdd)
+        public static int ActualizarPersonaBl(ClsPersona personaAdd)
         {
             try
             {

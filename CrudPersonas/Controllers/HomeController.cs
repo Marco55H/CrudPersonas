@@ -36,7 +36,7 @@ namespace CrudPersonas.Controllers
             ClsPersona persona = new ClsPersona();
             try
             {
-                persona = ClsServicesBDBl.BuscarPersonaDal(id);
+                persona = ClsServicesBDBl.BuscarPersonaBl(id);
             }
             catch
             {            
@@ -84,7 +84,8 @@ namespace CrudPersonas.Controllers
 
         public ActionResult Delete(int id)
         {
-            return View();
+            ClsPersona persona = ClsServicesBDBl.BuscarPersonaBl(id);
+            return View(persona);
         }
 
         [HttpPost]
@@ -93,7 +94,8 @@ namespace CrudPersonas.Controllers
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                int FilasAfectadas = ClsServicesBDBl.DeletePersonaBl(id);
+                return RedirectToAction(nameof(Index),FilasAfectadas);
             }
             catch
             {

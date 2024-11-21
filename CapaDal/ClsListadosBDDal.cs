@@ -8,6 +8,8 @@ namespace CapaDal
         /// <summary>
         /// Devuelve listado de persoans de la base de datos de azure
         /// </summary>
+        /// Pre: ninguna
+        /// Post: La lista puede estar vacia si no hay personas
         /// <returns>Listado de personas</returns>
         public static List<ClsPersona> ListadoPersonasDal()
         {

@@ -12,6 +12,8 @@ namespace CapaDal
     {        
 
         /// <summary>
+        /// Pre: El id Maoyr que 0
+        /// Pos: Si no encuentra usuario devuelve persona vacia
         /// Funcion que usamos para borrar una persona de la vbase de datos azure
         /// </summary>
         /// <param name="id">El parametro de entrada usado para encontrar la persona en la based de datos</param>
@@ -72,7 +74,7 @@ namespace CapaDal
 
                 miConexion.Open();
 
-                miComando.CommandText = "SELECT FROM personas WHERE ID=@id";
+                miComando.CommandText = "SELECT * FROM Personas WHERE ID=@id";
 
                 miComando.Connection = miConexion;
 
