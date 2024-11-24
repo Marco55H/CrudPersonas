@@ -60,7 +60,7 @@ namespace CapaDal
         {
             SqlDataReader miLector;
 
-            ClsPersona persona = null;
+            ClsPersona persona = new ClsPersona();
 
             SqlCommand miComando = new SqlCommand();
 

@@ -4,12 +4,41 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:CRUDMAUI"
+    xmlns:views="clr-namespace:CRUDMAUI.Views"
     Shell.FlyoutBehavior="Disabled"
     Title="CRUDMAUI">
 
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+    <FlyoutItem FlyoutDisplayOptions="AsMultipleItems">
+        <Tab Title="Personas" Icon="persona.png">
+            <ShellContent Title="Crear"
+                          Icon="agregar.png"
+                          ContentTemplate="{DataTemplate views:Create}" />
+
+            <ShellContent Title="Borrar"
+                          Icon="basura.png"
+                          ContentTemplate="{DataTemplate views:Delete}" />
+
+            <ShellContent Title="Editar"
+                          Icon="editar.png"
+                          ContentTemplate="{DataTemplate views:Edit}" />
+
+            <ShellContent Title="Listado"
+                          ContentTemplate="{DataTemplate views:Personas}" />
+        </Tab>
+
+        <Tab Title="Departamentos">
+            <ShellContent Title="Departamentos"
+                          Icon="departamentos.jpg"
+                          ContentTemplate="{DataTemplate views:Departamentos}" />
+        </Tab>
+    </FlyoutItem>
+
+    <ShellContent Title="Help"
+                  Icon="help.png"
+                  ContentTemplate="{DataTemplate views:Help}" />
+
+    <ShellContent Title="Settings"
+                  Icon="settings.png"
+                  ContentTemplate="{DataTemplate views:Settings}" />
 
 </Shell>

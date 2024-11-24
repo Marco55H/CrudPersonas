@@ -67,10 +67,9 @@
                 @Html.DisplayFor(modelItem => item.IDDepartamento)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) 
-                @Html.ActionLink("Create", "Create", new { /* id=item.PrimaryKey */ }) 
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-                @Html.ActionLink("Persona", "verPersona", new { /* id=item.PrimaryKey */ })
+                @Html.ActionLink("Edit", "Edit", new {  id=item.Id  }) 
+                @Html.ActionLink("Create", "Create", new {  id=item.Id  }) 
+                @Html.ActionLink("Delete", "Delete", new {  id=item.Id  })
             </td>
         </tr>
 }

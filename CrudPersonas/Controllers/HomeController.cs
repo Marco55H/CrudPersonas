@@ -23,27 +23,6 @@ namespace CrudPersonas.Controllers
             return View(listaPersonas);
         }
 
-        public ActionResult VerPersona()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult VerPersona(int id)
-        {
-
-            ClsPersona persona = new ClsPersona();
-            try
-            {
-                persona = ClsServicesBDBl.BuscarPersonaBl(id);
-            }
-            catch
-            {            
-            }
-            return View("VerPersona",persona);
-        }
-
         public ActionResult Create()
         {
             return View();
@@ -51,10 +30,11 @@ namespace CrudPersonas.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(ClsPersona persona, IFormCollection collection)
         {
             try
             {
+                int FilasAfectadas = ClsServicesBDBl.AddPersonaBl(persona);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -65,15 +45,18 @@ namespace CrudPersonas.Controllers
 
         public ActionResult Edit(int id)
         {
+            ClsPersona persona = ClsServicesBDBl.BuscarPersonaBl(id);
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(ClsPersona persona, IFormCollection collection)
         {
             try
             {
+                int FilasAfectadas = ClsServicesBDBl.ActualizarPersonaBl(persona);
+
                 return RedirectToAction(nameof(Index));
             }
             catch
