@@ -50,13 +50,15 @@ namespace CapaDal
 
                         oPersona = new ClsPersona();
 
-                        oPersona.Id = (int)miLector["id"];
+                        oPersona.Id = (int)miLector["ID"];
 
-                        oPersona.Nombre = (string)miLector["nombre"];
+                        oPersona.Nombre = (string)miLector["Nombre"];
 
-                        oPersona.Apellidos = (string)miLector["apellidos"];
+                        oPersona.Apellidos = (string)miLector["Apellidos"];
 
                         //Si sospechamos que el campo puede ser Null en la BBDD
+                        oPersona.Foto = (string)miLector["foto"];
+
 
                         if (miLector["FechaNacimiento"] != System.DBNull.Value)
 
@@ -67,6 +69,8 @@ namespace CapaDal
                         oPersona.Direccion = (string)miLector["direccion"];
 
                         oPersona.Telefono = (string)miLector["telefono"];
+
+                        oPersona.IDDepartamento = (int)miLector["IdDepartamento"];
 
                         listadoPersonas.Add(oPersona);
 

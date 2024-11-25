@@ -30,7 +30,7 @@ namespace CrudPersonas.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(ClsPersona persona, IFormCollection collection)
+        public ActionResult Create(ClsPersona persona)
         {
             try
             {
@@ -46,12 +46,12 @@ namespace CrudPersonas.Controllers
         public ActionResult Edit(int id)
         {
             ClsPersona persona = ClsServicesBDBl.BuscarPersonaBl(id);
-            return View();
+            return View(persona);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(ClsPersona persona, IFormCollection collection)
+        public ActionResult Edit(ClsPersona persona)
         {
             try
             {
@@ -72,8 +72,9 @@ namespace CrudPersonas.Controllers
         }
 
         [HttpPost]
+        [ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult DeletePost(int id)
         {
             try
             {

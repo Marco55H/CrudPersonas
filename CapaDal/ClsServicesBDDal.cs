@@ -185,7 +185,7 @@ namespace CapaDal
                 miConexion = ClsConexion.Conectar();
                 miConexion.Open();
 
-                miComando.CommandText = "Update Personas Set Nombre=@nombre, Apellidos=@apellidos, Telefono=@telefono, Direccion=@direccion, Foto = @foto, FechaNacimiento=@fechaNacimiento,IDDepartamento=@ideDepartamento, Where ID=@id";
+                miComando.CommandText = "Update Personas Set Nombre=@nombre, Apellidos=@apellidos, Telefono=@telefono, Direccion=@direccion, Foto = @foto, FechaNacimiento=@fechaNacimiento,IDDepartamento=@idDepartamento, Where ID=@id";
 
                 miComando.Connection = miConexion;
 
