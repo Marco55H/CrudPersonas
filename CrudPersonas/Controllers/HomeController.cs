@@ -1,6 +1,7 @@
 using CapaBl;
 using CapaDal;
 using CapaEnt;
+using CRUDASP.Models;
 using CrudPersonas.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
@@ -20,7 +21,15 @@ namespace CrudPersonas.Controllers
 
             List<ClsPersona> listaPersonas = ClsListadosBDBl.ObtenerLista();
 
-            return View(listaPersonas);
+            List<ClsPersonaConDepartamentoM> lista = new List<ClsPersonaConDepartamentoM> { };
+            for (int i = 0; i < listaPersonas.Count; i++)
+            {
+
+                lista.Add(new ClsPersonaConDepartamentoM(listaPersonas[i]));
+
+            }
+
+            return View(lista);
         }
 
         public ActionResult Create()
@@ -32,17 +41,21 @@ namespace CrudPersonas.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(ClsPersona persona)
         {
+            IActionResult result;
+
             try
             {
-                int FilasAfectadas = ClsServicesBDBl.AddPersonaBl(persona);
-                return RedirectToAction(nameof(Index));
+                ClsServicesBDBl.AddPersonaBl(persona);
+                ViewBag.Mensaje = "Persona creada correctamente";
+                result = View();
             }
-            catch
+            catch (Exception e)
             {
-                return View();
+                result = View("Error");
             }
-        }
 
+            return View();
+        }
         public ActionResult Edit(int id)
         {
             ClsPersona persona = ClsServicesBDBl.BuscarPersonaBl(id);

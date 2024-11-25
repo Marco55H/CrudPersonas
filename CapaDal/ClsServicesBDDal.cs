@@ -127,42 +127,44 @@ namespace CapaDal
         }
 
 
-        public static int AddPersonaDal(ClsPersona persona)
+        public static int addPersonaDAL(ClsPersona persona)
         {
-            int filaAfectada=0;
-            SqlCommand miComando = new SqlCommand();
-            SqlConnection miConexion = new SqlConnection();
+            int numeroFilasAfectadas = 0;
 
-            miComando.Parameters.Add("@id", System.Data.SqlDbType.Int).Value = persona.Id;
-            miComando.Parameters.Add("@nombre", System.Data.SqlDbType.VarChar).Value = persona.Nombre;
-            miComando.Parameters.Add("@apellidos", System.Data.SqlDbType.VarChar).Value = persona.Apellidos;
-            miComando.Parameters.Add("@telefono", System.Data.SqlDbType.VarChar).Value = persona.Telefono;
-            miComando.Parameters.Add("@direccion", System.Data.SqlDbType.VarChar).Value = persona.Direccion;
-            miComando.Parameters.Add("@foto", System.Data.SqlDbType.VarChar).Value = persona.Foto;
-            miComando.Parameters.Add("@fechaNacimiento", System.Data.SqlDbType.DateTime).Value = persona.FechaNacimiento;
-            miComando.Parameters.Add("@idDepartamento", System.Data.SqlDbType.DateTime).Value = persona.IDDepartamento;
+            SqlConnection miConexion = new SqlConnection();
+            SqlCommand miComando = new SqlCommand();
+            SqlDataReader miLector;
 
             try
             {
                 miConexion = ClsConexion.Conectar();
                 miConexion.Open();
 
-                miComando.CommandText = "Insert into Personas (ID, Nombre, Apellidos, Telefono, Direccion, Foto, FechaNAcimiento, IDDepartamento) Values " +
-                                                             "(@id, @nombre, @apellido, @telefono, @direccion, @fechanac, @idDepartamento)";
-            
+
+                miComando.Parameters.Add("@nombre", System.Data.SqlDbType.VarChar).Value = persona.Nombre;
+                miComando.Parameters.Add("@apellidos", System.Data.SqlDbType.VarChar).Value = persona.Apellidos;
+                miComando.Parameters.Add("@telefono", System.Data.SqlDbType.VarChar).Value = persona.Telefono;
+                miComando.Parameters.Add("@direccion", System.Data.SqlDbType.VarChar).Value = persona.Direccion;
+                miComando.Parameters.Add("@foto", System.Data.SqlDbType.VarChar).Value = persona.Foto;
+                miComando.Parameters.Add("@fechaNacimiento", System.Data.SqlDbType.DateTime).Value = persona.FechaNacimiento;
+                miComando.Parameters.Add("@idDepartamento", System.Data.SqlDbType.Int).Value = persona.IDDepartamento;
+
+                miComando.CommandText = "INSERT INTO Personas " +
+                    "VALUES (@nombre, @apellidos, @telefono, @direccion, @foto, @fechaNacimiento, @idDepartamento)";
                 miComando.Connection = miConexion;
 
-                filaAfectada = miComando.ExecuteNonQuery();
+                numeroFilasAfectadas = miComando.ExecuteNonQuery();
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
+                throw;
             }
             finally
             {
                 miConexion.Close();
             }
 
-            return filaAfectada;
+            return numeroFilasAfectadas;
         }
 
         public static int ActualizarPersonaDal(ClsPersona persona)
@@ -178,14 +180,14 @@ namespace CapaDal
             miComando.Parameters.Add("@direccion", System.Data.SqlDbType.VarChar).Value = persona.Direccion;
             miComando.Parameters.Add("@foto", System.Data.SqlDbType.VarChar).Value = persona.Foto;
             miComando.Parameters.Add("@fechaNacimiento", System.Data.SqlDbType.DateTime).Value = persona.FechaNacimiento;
-            miComando.Parameters.Add("@idDepartamento", System.Data.SqlDbType.DateTime).Value = persona.IDDepartamento;
+            miComando.Parameters.Add("@idDepartamento", System.Data.SqlDbType.Int).Value = persona.IDDepartamento;
 
             try
             {
                 miConexion = ClsConexion.Conectar();
                 miConexion.Open();
 
-                miComando.CommandText = "Update Personas Set Nombre=@nombre, Apellidos=@apellidos, Telefono=@telefono, Direccion=@direccion, Foto = @foto, FechaNacimiento=@fechaNacimiento,IDDepartamento=@idDepartamento, Where ID=@id";
+                miComando.CommandText = "UPDATE Personas SET Nombre=@nombre,  Apellidos=@apellidos, Telefono=@telefono, Direccion=@direccion, Foto=@foto, FechaNacimiento=@fechaNacimiento, IDDepartamento=@idDepartamento WHERE ID=@id";
 
                 miComando.Connection = miConexion;
 

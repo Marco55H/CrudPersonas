@@ -98,5 +98,84 @@ namespace CapaDal
             return listadoPersonas;
 
         }
+    
+
+    /// <summary>
+    /// Devuelve listado de departamentos de la base de datos de azure
+    /// </summary>
+    /// Pre: ninguna
+    /// Post: La lista puede estar vacia si no hay departamentos
+    /// <returns>Listado de personas</returns>
+    public static List<ClsDepartamento> ListadoDepartamentosDal()
+    {
+        //TODO mirar presentacionesSqlConnection miConexion= new SqlConnection();
+
+        List<ClsDepartamento> listadoDepartamentos = new List<ClsDepartamento>();
+
+        SqlConnection miConexion = new SqlConnection();
+
+        SqlCommand miComando = new SqlCommand();
+
+        SqlDataReader miLector;
+
+        ClsDepartamento oDepartamento;
+
+        try
+        {
+            miConexion = ClsConexion.Conectar();
+
+            miConexion.Open();
+
+            //Creamos el comando (Creamos el comando, le pasamos la sentencia y la conexion, y lo ejecutamos)
+
+            miComando.CommandText = "SELECT * FROM departamentos";
+
+            miComando.Connection = miConexion;
+
+            miLector = miComando.ExecuteReader();
+
+            //Si hay lineas en el lector
+
+            if (miLector.HasRows)
+            {
+
+                while (miLector.Read())
+
+                {
+                    oDepartamento = new ClsDepartamento();
+
+                    oDepartamento.ID = (int)miLector["ID"];
+
+                    oDepartamento.Nombre = (string)miLector["Nombre"];
+
+
+                    listadoDepartamentos.Add(oDepartamento);
+
+                }
+
+            }
+
+            miLector.Close();
+
+            miConexion.Close();
+
+        }
+
+        catch (SqlException exSql)
+        {
+
+            throw exSql;
+
+        }
+        finally
+        {
+            miConexion.Close();
+        }
+
+        return listadoDepartamentos;
+
+    }
+
     }
 }
+

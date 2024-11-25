@@ -44,8 +44,7 @@ namespace CapaBl
         {
             try
             {
-                filasAfectadas = ClsServicesBDDal.AddPersonaDal(personaAdd);
-
+                filasAfectadas = ClsServicesBDDal.addPersonaDAL(personaAdd);
             }
             catch (Exception ex)
             {

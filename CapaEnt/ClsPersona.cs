@@ -30,18 +30,16 @@
         #region Contructores
         public ClsPersona() { }
 
-        // Constructor con parámetros
-        public ClsPersona(int _id, string _nombre, string _apellidos, string _telefono, string _direccion,
-                       string _foto, DateTime _fechaNacimiento, int _idDepartamento)
+        public ClsPersona(int id, string nombre, string apellidos, string telefono, string direccion, string foto, DateTime fechaNacimiento, int idDepartamento)
         {
-            id = _id;
-            nombre = _nombre;
-            apellidos = _apellidos;
-            telefono = _telefono;
-            direccion = _direccion;
-            foto = _foto;
-            fechaNacimiento = _fechaNacimiento;
-            IDDepartamento = _idDepartamento;
+            this.id = id;
+            this.nombre = nombre;
+            this.apellidos = apellidos;
+            this.telefono = telefono;
+            this.direccion = direccion;
+            this.foto = foto;
+            this.fechaNacimiento = fechaNacimiento;
+            IDDepartamento = idDepartamento;
         }
         #endregion
     }
