@@ -6,4 +6,9 @@ public partial class Edit : ContentPage
 	{
 		InitializeComponent();
 	}
+
+	private async void VolverAPersonas(object sender, EventArgs e)
+	{
+		await Shell.Current.GoToAsync("Personas");
+	}
 }

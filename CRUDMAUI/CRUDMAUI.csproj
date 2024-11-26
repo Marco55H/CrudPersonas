@@ -60,6 +60,7 @@
 	  <None Remove="Resources\Images\agregar.png" />
 	  <None Remove="Resources\Images\basura.png" />
 	  <None Remove="Resources\Images\departamento.png" />
+	  <None Remove="Resources\Images\editar.png" />
 	  <None Remove="Resources\Images\help.png" />
 	  <None Remove="Resources\Images\persona.png" />
 	  <None Remove="Resources\Images\settings.png" />

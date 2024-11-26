@@ -8,5 +8,11 @@
             Text="Welcome to .NET MAUI!"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
+
+        <Button Text="Vover a personas" 
+                Clicked="VolverAPersonas"
+                HorizontalOptions="Center"/>
+
+
     </VerticalStackLayout>
 </ContentPage>

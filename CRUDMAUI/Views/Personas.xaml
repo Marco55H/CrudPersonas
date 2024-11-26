@@ -56,6 +56,7 @@
 
         <StackLayout  HorizontalOptions="End" VerticalOptions="Start" Spacing="10">
             <ImageButton
+                Clicked="AgregarPersona"
                 Source="agregar.png"
                 BorderWidth="4"
                 CornerRadius="30"
@@ -65,6 +66,7 @@
             />
             
             <ImageButton
+                Clicked="BorrarPersona"
                 Source="basura.png"
                 BorderWidth="4"
                 CornerRadius="30"
@@ -72,7 +74,17 @@
                 HeightRequest="60"
                 Margin="20"
             />
-            
+
+            <ImageButton                
+                Clicked="EditarPersona"
+                Source="editar.png"
+                BorderWidth="4"
+                CornerRadius="30"
+                WidthRequest="60"
+                HeightRequest="60"
+                Margin="20"
+            />
+
         </StackLayout>
     </Grid>
 </ContentPage>
