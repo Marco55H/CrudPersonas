@@ -5,7 +5,7 @@
              Title="Help">
     <VerticalStackLayout>
         <Label 
-            Text="Welcome to .NET MAUI!"
+            Text="Para asistencia llame a 654 98 56 64"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
     </VerticalStackLayout>
