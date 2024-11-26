@@ -9,25 +9,13 @@
 
     <FlyoutItem FlyoutDisplayOptions="AsMultipleItems">
         <Tab Title="Personas" Icon="persona.png">
-            <ShellContent Title="Crear"
-                          Icon="agregar.png"
-                          ContentTemplate="{DataTemplate views:Create}" />
-
-            <ShellContent Title="Borrar"
-                          Icon="basura.png"
-                          ContentTemplate="{DataTemplate views:Delete}" />
-
-            <ShellContent Title="Editar"
-                          Icon="editar.png"
-                          ContentTemplate="{DataTemplate views:Edit}" />
-
             <ShellContent Title="Listado"
                           ContentTemplate="{DataTemplate views:Personas}" />
         </Tab>
 
         <Tab Title="Departamentos">
             <ShellContent Title="Departamentos"
-                          Icon="departamentos.jpg"
+                          Icon="departamento.png"
                           ContentTemplate="{DataTemplate views:Departamentos}" />
         </Tab>
     </FlyoutItem>

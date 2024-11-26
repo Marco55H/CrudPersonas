@@ -1,12 +1,78 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:CRUDMAUI.ViewModels"
              x:Class="CRUDMAUI.Views.Personas"
              Title="Personas">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+
+    <ContentPage.BindingContext>
+        <vm:ListaPersonasVM></vm:ListaPersonasVM>
+    </ContentPage.BindingContext>
+
+
+    <Grid>
+    <ScrollView>
+
+        <ListView ItemsSource="{Binding PersonaConDepartamentoM}">
+
+            <ListView.Header >
+                <StackLayout Orientation="Horizontal" Padding="10" BackgroundColor="SeaGreen">
+                    <Label Text="Nombre" FontSize="20" FontAttributes="Bold" HorizontalOptions="FillAndExpand"/>
+                    <Label Text="Apellidos" FontSize="20" FontAttributes="Bold" HorizontalOptions="FillAndExpand"/>
+                    <Label Text="Telefono" FontSize="20" FontAttributes="Bold" HorizontalOptions="FillAndExpand"/>
+                    <Label Text="Direccion" FontSize="20" FontAttributes="Bold" HorizontalOptions="FillAndExpand"/>
+                    <Label Text="Fecha Nacimiento" FontSize="20" FontAttributes="Bold" HorizontalOptions="FillAndExpand"/>
+                    <Label Text="Departamento" FontSize="20" FontAttributes="Bold" HorizontalOptions="FillAndExpand"/>
+                    <Label Text="Foto" FontSize="20" FontAttributes="Bold" HorizontalOptions="FillAndExpand"/>
+                </StackLayout>
+
+            </ListView.Header>
+
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal" Padding="10" HorizontalOptions="FillAndExpand">
+                            <Label Text="{Binding Nombre}" FontSize="20" HorizontalOptions="FillAndExpand"/>
+                            <Label Text="{Binding Apellidos}" FontSize="20" HorizontalOptions="FillAndExpand"/>
+                            <Label Text="{Binding Telefono}" FontSize="20" HorizontalOptions="FillAndExpand"/>
+                            <Label Text="{Binding Direccion}" FontSize="20" HorizontalOptions="FillAndExpand"/>
+                            <Label Text="{Binding FechaNacimiento}" FontSize="20" HorizontalOptions="FillAndExpand"/>
+                            <Label Text="{Binding NombreDept}" FontSize="20" HorizontalOptions="FillAndExpand"/>
+                            <Image Source="{Binding Foto}" Height="50" Width="50" HorizontalOptions="FillAndExpand"/>
+
+                        </StackLayout>
+                        
+                    </ViewCell>
+
+                </DataTemplate>
+
+
+            </ListView.ItemTemplate>
+
+
+
+        </ListView>
+    </ScrollView>
+
+        <StackLayout  HorizontalOptions="End" VerticalOptions="Start" Spacing="10">
+            <ImageButton
+                Source="agregar.png"
+                BorderWidth="4"
+                CornerRadius="30"
+                WidthRequest="60"
+                HeightRequest="60"
+                Margin="20"
+            />
+            
+            <ImageButton
+                Source="basura.png"
+                BorderWidth="4"
+                CornerRadius="30"
+                WidthRequest="60"
+                HeightRequest="60"
+                Margin="20"
+            />
+            
+        </StackLayout>
+    </Grid>
 </ContentPage>

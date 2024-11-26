@@ -19,17 +19,9 @@ namespace CrudPersonas.Controllers
         public ActionResult ListaPersonas()
         {
 
-            List<ClsPersona> listaPersonas = ClsListadosBDBl.ObtenerLista();
+            ClsListaPersonasConDepartamento lista = new ClsListaPersonasConDepartamento();
 
-            List<ClsPersonaConDepartamentoM> lista = new List<ClsPersonaConDepartamentoM> { };
-            for (int i = 0; i < listaPersonas.Count; i++)
-            {
-
-                lista.Add(new ClsPersonaConDepartamentoM(listaPersonas[i]));
-
-            }
-
-            return View(lista);
+            return View(lista.Lista);
         }
 
         public ActionResult Create()
