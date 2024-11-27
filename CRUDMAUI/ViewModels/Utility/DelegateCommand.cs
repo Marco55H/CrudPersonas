@@ -20,7 +20,7 @@ namespace _18_CRUD_Personas_UWP_UI.ViewModels.Utilidades
         /// </summary>
         /// <param name="execute">The execution logic.</param>
         /// <exception cref="ArgumentNullException">If the execute argument is null.</exception>
-        public DelegateCommand(Action execute)
+        public DelegateCommand(Action execute, object? cmsEditar_CanExecute)
             : this(execute, null)
         {
         }

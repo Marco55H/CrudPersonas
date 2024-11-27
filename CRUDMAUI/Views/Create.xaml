@@ -2,14 +2,41 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CRUDMAUI.Views.Create"
+             xmlns:vm="clr-namespace:CRUDMAUI.ViewModels"
              Title="Create">
+
+    <ContentPage.BindingContext>
+        <vm:AgregarPersonaVM></vm:AgregarPersonaVM>
+    </ContentPage.BindingContext>
+    
     <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
+        <VerticalStackLayout>
+
+            <Label 
+            Text="Cree su persona"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
-        <Button Text="Volver a Personas"
-                Clicked="VolverAPersonas"
-                HorizontalOptions="Center" />
+
+            <Entry Text="{Binding Persona.Id}" Placeholder="Id"/>
+            <Entry Text="{Binding Persona.Nombre}" Placeholder="Nombre"/>
+            <Entry Text="{Binding Persona.Apellidos}" Placeholder="Apellidos"/>
+            <Entry Text="{Binding Persona.Telefono}" Placeholder="telefono"/>
+            <Entry Text="{Binding Persona.Direccion}" Placeholder="Direccion"/>
+            <Entry Text="{Binding Persona.FechaNacimiento}" Placeholder="Direccion"/>
+            <Entry Text="{Binding Persona.IDDepartamento}" Placeholder="Direccion"/>
+
+            <Entry Text="{Binding Persona.Foto}" Placeholder="Foto"/>
+            <Picker ItemsSource="{Binding Departamentos}"
+                SelectedItem="{Binding Departamento}"
+                ItemDisplayBinding="{Binding Departamento.Nombre}"/>
+            <Button Text="Confirmar"
+                HorizontalOptions="Center"
+                Command="{Binding CmdCrear}"/>
+            <Label Text="{Binding Confirma}"></Label>
+            <Button 
+                Text="Volver a Personas"
+                HorizontalOptions="Center"/>
+
+        </VerticalStackLayout>
     </VerticalStackLayout>
 </ContentPage>

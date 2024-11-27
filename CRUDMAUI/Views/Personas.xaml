@@ -13,7 +13,7 @@
     <Grid>
     <ScrollView>
 
-        <ListView ItemsSource="{Binding PersonaConDepartamentoM}">
+        <ListView ItemsSource="{Binding PersonaConDepartamentoM}" SelectedItem="{Binding PersonaSeleccionada, Mode=TwoWay}">
 
             <ListView.Header >
                 <StackLayout Orientation="Horizontal" Padding="10" BackgroundColor="SeaGreen">
@@ -28,7 +28,7 @@
 
             </ListView.Header>
 
-                <ListView.ItemTemplate SelectedItem="{Binding PersonaSeleccionada, Mode=TwoWay}"
+                <ListView.ItemTemplate 
 >
                 <DataTemplate>
                     <ViewCell>

@@ -1,15 +1,36 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:CRUDMAUI.ViewModels"
              x:Class="CRUDMAUI.Views.Edit"
              Title="Edit">
+
+    <ContentPage.BindingContext>
+        <vm:EditarPersonaVM></vm:EditarPersonaVM>
+    </ContentPage.BindingContext>
+    
     <VerticalStackLayout>
+        
         <Label 
-            Text="Welcome to .NET MAUI!"
+            Text="Pagina de Edicion"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
-        <Button Clicked="VolverAPersonas"
+
+        <Entry Text="{Binding Persona.Nombre}" Placeholder="Nombre"/>
+        <Entry Text="{Binding Persona.Apellidos}" Placeholder="Apellidos"/>
+        <Entry Text="{Binding Persona.Telefono}" Placeholder="telefono"/>
+        <Entry Text="{Binding Persona.Direccion}" Placeholder="Direccion"/>
+        <Entry Text="{Binding Persona.Foto}" Placeholder="Foto"/>
+        <Picker ItemsSource="{Binding Departamentos}"
+                SelectedItem="{Binding Departamento}"
+                ItemDisplayBinding="{Binding Departamento.Nombre}"/>
+        <Button Text="Confirmar"
+                HorizontalOptions="Center"
+                Command="{Binding Editado}"/>
+        <Label Text="{Binding Confirma}"></Label>
+        <Button 
                 Text="Volver a Personas"
                 HorizontalOptions="Center"/>
+        
     </VerticalStackLayout>
 </ContentPage>

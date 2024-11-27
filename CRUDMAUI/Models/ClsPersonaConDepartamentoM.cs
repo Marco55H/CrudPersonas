@@ -26,5 +26,9 @@ namespace CRUDMAUI.Models
             this.FechaNacimiento = persona.FechaNacimiento;
             this.nombreDept = ClsServiciosDepartamentos.BuscarDepartamentoBl(persona.IDDepartamento).Nombre;
         }
+
+        public ClsPersonaConDepartamentoM()
+        {
+        }
     }
 }

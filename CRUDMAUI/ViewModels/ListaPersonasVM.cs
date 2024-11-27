@@ -2,13 +2,8 @@
 using CapaBl;
 using CapaEnt;
 using CRUDMAUI.Models;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CRUDMAUI.ViewModels
 {
@@ -26,6 +21,7 @@ namespace CRUDMAUI.ViewModels
         private ClsPersonaConDepartamentoM personaSeleccionada;
 
         public List<ClsPersonaConDepartamentoM> personasConDepartamentoM;
+        private object cmsEditar_CanExecute;
         #endregion
 
         #region Propiedades
@@ -40,6 +36,7 @@ namespace CRUDMAUI.ViewModels
                 personaSeleccionada = value;
                 NotifyPropertyChanged(nameof(PersonaSeleccionada));
                 cmdBorrar.RaiseCanExecuteChanged();
+                cmdEditar.RaiseCanExecuteChanged();
             }
 
         }
@@ -50,6 +47,7 @@ namespace CRUDMAUI.ViewModels
 
         #endregion
 
+        #region Constructor
         public ListaPersonasVM()
         {
             try
@@ -63,9 +61,11 @@ namespace CRUDMAUI.ViewModels
                 }
 
                 // Inicializar comando de navegación con Execute y CanExecute
-                cmdBorrar = new DelegateCommand(cmdBorrar_Execute, cmsBorrar_CanExecute);
+                cmdBorrar = new DelegateCommand(cmdBorrar_Execute, cmdBorrar_CanExecute);
 
-                cmdCrear = new DelegateCommand(cmdCrea_Executer);
+                cmdEditar = new DelegateCommand(cmdEditar_Execute, cmdBorrar_CanExecute);
+
+                cmdCrear = new DelegateCommand(cmdCrear_Executer, cmdCrear_CanExecute);
             }
             catch (Exception ex)
             {
@@ -75,28 +75,39 @@ namespace CRUDMAUI.ViewModels
 
         }
 
+ 
+
+        #endregion
+
         #region Comandos
 
-        private async void cmdCrea_Executer()
+        private async void cmdCrear_Executer()
         {
             await Shell.Current.GoToAsync("///Create");
+        }   
+
+        private bool cmdCrear_CanExecute()
+        {
+            return true;
         }
 
-        
-        private bool cmsBorrar_CanExecute()
+
+        private void cmdBorrar_Execute()
         {
-            bool devolver=false;
+            int filasModificadas = ClsServicesBDBl.DeletePersonaBl(personaSeleccionada.Id);
+        }
+
+
+        private bool cmdBorrar_CanExecute()
+        {
+            bool devolver = false;
             if (personaSeleccionada != null)
             {
-                devolver= true;
+                devolver = true;
             }
             return devolver;
         }
 
-        private void cmdBorrar_Execute()
-        {
-           
-        }
 
         private async void cmdEditar_Execute()
         {
@@ -106,6 +117,7 @@ namespace CRUDMAUI.ViewModels
 
             await Shell.Current.GoToAsync("///Edit", diccionarioMandar);
         }
+
 
         #endregion
 

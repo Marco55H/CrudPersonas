@@ -6,9 +6,4 @@ public partial class Create : ContentPage
 	{
 		InitializeComponent();
 	}
-
-    private async void VolverAPersonas(object sender, EventArgs e)
-    {
-        await Shell.Current.GoToAsync("Personas");
-    }
 }
