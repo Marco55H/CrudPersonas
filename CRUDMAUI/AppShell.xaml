@@ -20,6 +20,10 @@
         </Tab>
     </FlyoutItem>
 
+    <ShellContent  Title="Help" ContentTemplate="{DataTemplate views:Create}" Route="Create" FlyoutItemIsVisible="False"/>
+    <ShellContent  Title="Help" ContentTemplate="{DataTemplate views:Edit}" Route="Edit" FlyoutItemIsVisible="False"/>
+    <ShellContent  Title="Help" ContentTemplate="{DataTemplate views:Delete}" Route="Delete" FlyoutItemIsVisible="False"/>
+
     <ShellContent Title="Help"
                   Icon="help.png"
                   ContentTemplate="{DataTemplate views:Help}" />
