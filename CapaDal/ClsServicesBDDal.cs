@@ -154,6 +154,7 @@ namespace CapaDal
                 miComando.Connection = miConexion;
 
                 numeroFilasAfectadas = miComando.ExecuteNonQuery();
+
             }
             catch (Exception ex)
             {

@@ -73,17 +73,18 @@ namespace CRUDMAUI.ViewModels
         private bool cmd_CanExecute()
         {
             bool posible = false;
-            if (persona.Id != null && persona.Nombre != null && persona.Telefono != null && persona.Apellidos != null && persona.Direccion != null && persona.Foto != null && persona.FechaNacimiento != null)
+            if (!string.IsNullOrEmpty(persona.Nombre) && !string.IsNullOrEmpty(persona.Apellidos) && !string.IsNullOrEmpty(persona.Direccion) && !string.IsNullOrEmpty(persona.Foto) && persona.Direccion != null && persona.Foto != null && persona.FechaNacimiento != null)
             {
                 posible = true;
             }
-            return posible;
+            return true;
         }
 
-        private void cmdCrear_Execute()
+        private async void cmdCrear_Execute()
         {
-            int filas = ClsServicesBDBl.AddPersonaBl(persona);
+            int filas = ClsServicesBDBl.AddPersonaBl(persona);           
             confirma = "Ha añadido la persona";
+            await Shell.Current.GoToAsync("///Personas");
         }
         #endregion
 

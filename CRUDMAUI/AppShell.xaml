@@ -10,7 +10,7 @@
     <FlyoutItem FlyoutDisplayOptions="AsMultipleItems">
         <Tab Title="Personas" Icon="persona.png">
             <ShellContent Title="Listado"
-                          ContentTemplate="{DataTemplate views:Personas}" />
+                          ContentTemplate="{DataTemplate views:Personas}" Route="Personas"/>
         </Tab>
 
         <Tab Title="Departamentos">
@@ -20,9 +20,9 @@
         </Tab>
     </FlyoutItem>
 
-    <ShellContent  Title="Help" ContentTemplate="{DataTemplate views:Create}" Route="Create" FlyoutItemIsVisible="False"/>
-    <ShellContent  Title="Help" ContentTemplate="{DataTemplate views:Edit}" Route="Edit" FlyoutItemIsVisible="False"/>
-    <ShellContent  Title="Help" ContentTemplate="{DataTemplate views:Delete}" Route="Delete" FlyoutItemIsVisible="False"/>
+    <ShellContent  Title="Crear" ContentTemplate="{DataTemplate views:Create}" Route="Create" FlyoutItemIsVisible="False"/>
+    <ShellContent  Title="Editar" ContentTemplate="{DataTemplate views:Edit}" Route="Edit" FlyoutItemIsVisible="False"/>
+    <ShellContent  Title="Borrar" ContentTemplate="{DataTemplate views:Delete}" Route="Delete" FlyoutItemIsVisible="False"/>
 
     <ShellContent Title="Help"
                   Icon="help.png"

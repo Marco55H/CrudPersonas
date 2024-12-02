@@ -16,14 +16,17 @@
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
 
-        <Entry Text="{Binding Persona.Nombre}" Placeholder="Nombre"/>
+        <Entry Placeholder="{Binding Persona.Nombre}"/>
         <Entry Text="{Binding Persona.Apellidos}" Placeholder="Apellidos"/>
         <Entry Text="{Binding Persona.Telefono}" Placeholder="telefono"/>
         <Entry Text="{Binding Persona.Direccion}" Placeholder="Direccion"/>
+        <Entry Text="{Binding Persona.FechaNacimiento}" Placeholder="Direccion"/>
+        <Entry Text="{Binding Persona.IDDepartamento}" Placeholder="Direccion"/>
         <Entry Text="{Binding Persona.Foto}" Placeholder="Foto"/>
+        
         <Picker ItemsSource="{Binding Departamentos}"
                 SelectedItem="{Binding Departamento}"
-                ItemDisplayBinding="{Binding Departamento.Nombre}"/>
+                ItemDisplayBinding="{Binding Nombre}"/>
         <Button Text="Confirmar"
                 HorizontalOptions="Center"
                 Command="{Binding Editado}"/>

@@ -24,7 +24,6 @@ namespace CRUDMAUI.ViewModels
         #endregion
 
         #region propiedades
-
         public List<ClsDepartamento> Departamentos { get { return departamentos; } }
 
         public ClsDepartamento Departamento {
@@ -75,10 +74,11 @@ namespace CRUDMAUI.ViewModels
             return posible;
         }
 
-        private void cmdEditado_Execute()
+        private async void cmdEditado_Execute()
         {
             int lineas = ClsServicesBDBl.ActualizarPersonaBl(persona);
             confirma = "Ha modificado la persona";
+            await Shell.Current.GoToAsync("///Personas");
         }
         #endregion
 
