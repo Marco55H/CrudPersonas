@@ -112,15 +112,12 @@ namespace CRUDMAUI.ViewModels
         private async void cmdEditar_Execute()
         {
 
-            ClsPersona persona = ClsServicesBDBl.BuscarPersonaBl(personaSeleccionada.Id);
-
-
-            var queryParams = new Dictionary<string, object>
+            var diccionario = new Dictionary<string, object>
             {
-                {"persona", persona }
+                {"persona", personaSeleccionada }
             };
 
-            await Shell.Current.GoToAsync("///Edit", queryParams);
+            await Shell.Current.GoToAsync("///Edit", diccionario);
         }
 
 

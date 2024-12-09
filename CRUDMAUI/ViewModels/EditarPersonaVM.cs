@@ -16,6 +16,7 @@ namespace CRUDMAUI.ViewModels
     class EditarPersonaVM : INotifyPropertyChanged
     {
         #region atributos
+        private DelegateCommand cmdVolver;
         private ClsDepartamento departamento;
         private ClsPersonaConDepartamentoM persona;
         private DelegateCommand cmdEditado;
@@ -37,6 +38,8 @@ namespace CRUDMAUI.ViewModels
 
         public String Confirma{get{return confirma; }}
         public DelegateCommand Editado { get { return cmdEditado; } }
+        public DelegateCommand Volver { get { return cmdVolver; } }
+
 
         public ClsPersonaConDepartamentoM Persona { 
             get { return persona;} 
@@ -58,12 +61,21 @@ namespace CRUDMAUI.ViewModels
             persona = new ClsPersonaConDepartamentoM();
             departamentos = ClsListadoDepartamentosBDBl.ClsListadoDepartamentosBl();
             cmdEditado = new DelegateCommand(cmdEditado_Execute, cmdEditado_CanExecute);
+            cmdVolver = new DelegateCommand(cmdVolver_Execute, true);
         }
+
 
         #endregion
 
 
         #region Comandos
+
+        private async void cmdVolver_Execute()
+        {
+            await Shell.Current.GoToAsync("///Personas");
+        }
+
+
         private bool cmdEditado_CanExecute()
         {
             bool posible = false;

@@ -16,13 +16,17 @@
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
 
+        <!-- 
+         Sé que lo corregimos en clase pero no lo subi a github lo intenté arreglar con el tiempo del puente pero me he quedado por aquí porque ya tengo que entregar
+        con el breakpoint, me aparecen los valores correctos en editVM, es decir los paso bien de un viewmodel a otro, pero nose pq no aparece aqui
+        -->
         <Entry Placeholder="{Binding Persona.Nombre}"/>
-        <Entry Text="{Binding Persona.Apellidos}" Placeholder="Apellidos"/>
-        <Entry Text="{Binding Persona.Telefono}" Placeholder="telefono"/>
-        <Entry Text="{Binding Persona.Direccion}" Placeholder="Direccion"/>
-        <Entry Text="{Binding Persona.FechaNacimiento}" Placeholder="Direccion"/>
-        <Entry Text="{Binding Persona.IDDepartamento}" Placeholder="Direccion"/>
-        <Entry Text="{Binding Persona.Foto}" Placeholder="Foto"/>
+        <Entry Text="{Binding Persona.Apellidos}"/>
+        <Entry Text="{Binding Persona.Telefono}" />
+        <Entry Text="{Binding Persona.Direccion}"/>
+        <Entry Text="{Binding Persona.FechaNacimiento}"/>
+        <Entry Text="{Binding Persona.NombreDept}"/>
+        <Entry Text="{Binding Persona.Foto}"/>
         
         <Picker ItemsSource="{Binding Departamentos}"
                 SelectedItem="{Binding Departamento}"
@@ -31,7 +35,8 @@
                 HorizontalOptions="Center"
                 Command="{Binding Editado}"/>
         <Label Text="{Binding Confirma}"></Label>
-        <Button 
+        <Button
+            Command="{Binding Volver}"
                 Text="Volver a Personas"
                 HorizontalOptions="Center"/>
         

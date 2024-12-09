@@ -14,6 +14,7 @@ namespace CRUDMAUI.ViewModels
     class AgregarPersonaVM : INotifyPropertyChanged
     {
         #region Atributos
+        private DelegateCommand cmdVolver;
         private ClsPersona persona = new ClsPersona();
         private DelegateCommand cmdCrear;
         private List<ClsDepartamento> departamentos;
@@ -35,6 +36,7 @@ namespace CRUDMAUI.ViewModels
                 cmdCrear.RaiseCanExecuteChanged();
             }
         }
+        public DelegateCommand Volver { get { return cmdVolver; } }
 
         public ClsDepartamento Departamento
         {
@@ -64,15 +66,23 @@ namespace CRUDMAUI.ViewModels
             departamentos = ClsListadoDepartamentosBDBl.ClsListadoDepartamentosBl();
 
             cmdCrear = new DelegateCommand(cmdCrear_Execute, cmd_CanExecute);
+            cmdVolver = new DelegateCommand(cmdVolver_Execute, true);
+
         }
 
-        
+
         #endregion
 
         #region Comandos
+        private async void cmdVolver_Execute()
+        {
+            await Shell.Current.GoToAsync("///Personas");
+        }
         private bool cmd_CanExecute()
         {
             bool posible = false;
+
+            //No me funciona esta condicion
             if (!string.IsNullOrEmpty(persona.Nombre) && !string.IsNullOrEmpty(persona.Apellidos) && !string.IsNullOrEmpty(persona.Direccion) && !string.IsNullOrEmpty(persona.Foto) && persona.Direccion != null && persona.Foto != null && persona.FechaNacimiento != null)
             {
                 posible = true;

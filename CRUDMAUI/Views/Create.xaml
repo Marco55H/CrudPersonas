@@ -29,11 +29,15 @@
             <Picker ItemsSource="{Binding Departamentos}"
                 SelectedItem="{Binding Departamento}"
                 ItemDisplayBinding="{Binding Nombre}"/>
+            
             <Button Text="Confirmar"
                 HorizontalOptions="Center"
                 Command="{Binding CmdCrear}"/>
+            
             <Label Text="{Binding Confirma}"></Label>
-            <Button 
+
+            <Button
+            Command="{Binding Volver}"
                 Text="Volver a Personas"
                 HorizontalOptions="Center"/>
 
