@@ -11,7 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace CRUDMAUI.ViewModels
-{
+{ 
     [QueryProperty(nameof(Persona), "persona")]
     class EditarPersonaVM : INotifyPropertyChanged
     {
